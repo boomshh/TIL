@@ -1,15 +1,6 @@
 # Class
-1. 객체지향 프로그래밍이란. 
-   - Object Oriented Programming (OOP)
-   - 코틀린은 모든 것이 클래스 형태이므로 객체화할 수 있다. 
-   - 프로그램에서 필요한 데이터를 추상화시켜 상태와 행위를 가진 객체를 만든다.
-   - 객체들간의 적절한 결합을 통해 유지 보수를 쉽게 한다.
-   - 5대 키워드 (클래스, 추상화, 캡슐화, 상속, 다형성)
-   - [객체 지향 프로그래밍](https://ko.wikipedia.org/wiki/%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
-   - [절차 지향 프로그래밍](https://ko.wikipedia.org/wiki/%EC%A0%88%EC%B0%A8%EC%A0%81_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
-   - [함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
    
-2. 클래스
+1. 클래스
    - 프로그램의 각 요소별 설계도
    - 코틀린에서는 class 키워드를 활용해서 클래스를 만듦
    - 클래스에는 정보(프로퍼티)와 행위(메소드)를 작성한다.
@@ -57,4 +48,64 @@
     - odject class 
         - Java의 static 대신 사용하는 키워드.
         - 프로그램을 실행하는 동시에 인스턴스함.
-        
+
+2. 생성자의 활용
+    - 기본 생성자와 명시적 생성자가 존재.
+    - 기본 생성자는 이전까지 클래스를 만들던 행위와 차이가 없음. 
+    - 명시적 생성자는 주 생성자와 부 생성자로 구분할 수 있다. 
+        - Kotlin 생성자의 종류 
+    1. Init (주 생성자)의 사용 예시
+    ```kotlin
+        // init 
+        fun main() {
+
+        } ```
+        // 클래스 선언부에 생성자를 명시함
+    class Character(_name:String, _hairColor:String, _height:Double) {
+    var name:String = ""
+    var hairColor:String = ""
+    var height:Double = 0.0
+
+		// 매개변수를 직접 넘기지않음
+    init {
+        println("매개변수없는 생성자 실행 완료!")
+    }
+
+    fun fireBall() {
+        println("파이어볼!")
+    }
+    fun compositing(device1:String, device2:String): String {
+        var device3 = device1 + device2
+        println("새로운 무기인 ${device3}입니다")
+        return device3
+        }
+    }
+    ```
+   2. Constructor (부 생성자)의 사용 예시
+   ```kotlin
+   		fun main() {
+
+    }
+    
+    class Character {
+      var name:String = ""
+      var hairColor:String = ""
+      var height:Double = 0.0
+
+      // 명시적 생성자 (Constructor)
+      // _name, _hairColor, _height와 같이 생성자에 변수를 넘기는 경우에 사용함
+      constructor(_name:String, _hairColor:String, _height:Double) {
+          println("${_name}을 생성자로 넘겼어요")
+          println("${_hairColor}를 생성자로 넘겼어요")
+          println("${_height}를 생성자로 넘겼어요")
+      }
+
+      fun fireBall() {
+          println("파이어볼!")
+      }
+      fun compositing(device1:String, device2:String): String {
+          var device3 = device1 + device2
+          println("새로운 무기인 ${device3}입니다")
+          return device3
+       }
+     }
