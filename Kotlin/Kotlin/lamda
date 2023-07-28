@@ -1,0 +1,52 @@
+package com.example.note
+
+import java.util.function.BinaryOperator
+
+
+// 확장 함수
+val bookCover : String.() -> String = {
+    this + "bookCover is .."
+}
+
+fun extendString(name : String, age: Int) : String {
+    val introduceMyself : String.(Int) -> String = {"I am ${this} and ${it} years old"} // 파라미터가 하나로만 들어가는 경우에는 it으로 생략이 가능하다.
+    return name.introduceMyself(age)
+}
+
+fun main () {
+    val a = "water"
+    val b = "mouse"
+
+    println(a.bookCover())
+    println(b.bookCover())
+
+    println(extendString("Ethan", 256))
+    println(calculateGrade(76))
+
+    val lamda = {number : Double ->
+        number == 4.3213 // 밑에서 선언한 lamda(5.2343)과 다르니 false가 나온다.
+    }
+    println(invokeLamda(lamda))
+    println(invokeLamda({it>3.23})) // 밑에서 선언한 숫자가 크니 true
+
+    invokeLamda { it > 3.222 } // 람다함수는 위와 똑같은 식이지만, 생략해서 출력 가능.
+                               // it은 invokeLamda에서 선언된 하나의 피라미터를 뜻한다.
+}
+
+//람다를 표현하는 여러가지 방법
+fun invokeLamda(lamda: (Double) -> Boolean ) : Boolean {
+    return lamda(5.2343)
+}
+
+//람다의 리턴
+// Int 는 항상 소 가로를 사용해주어야 한다.
+val calculateGrade : (Int) -> String = { // 람다는 리턴을 할 때 마지막 표현식이 리턴의 value 타입을 지정한다.
+    when(it) {
+        in 0..40 -> "fail"
+        in 41..70 -> "pass"
+        in 71..100 -> "perfect"
+        else -> "Error"
+    }
+}
+
+// 익명 내부 함수
